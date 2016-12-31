@@ -136,7 +136,7 @@ ksort($categories);
                         </tbody>
                     <?php endforeach; ?>
                 </table>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+                <script src="vendor/bower-asset/jquery/dist/jquery.js"></script>
                 <script>
                     $("tbody tr").click(function(e) {
                         if (e.target.nodeName == 'A') {
