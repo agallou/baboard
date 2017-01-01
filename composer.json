@@ -2,6 +2,7 @@
     "require": {
         "docker-php/docker-php": "^1.24",
         "fxp/composer-asset-plugin": "^1.2",
-        "bower-asset/jquery": "^3.1"
+        "bower-asset/jquery": "2.2.4",
+        "bower-asset/foundation-sites": "6.3.0"
     }
 }

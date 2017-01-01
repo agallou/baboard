@@ -76,7 +76,7 @@ ksort($categories);
     <head>
         <meta charset="utf-8">
         <title>Baboard</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
+        <link rel="stylesheet" href="vendor/bower-asset/foundation-sites/dist/css/foundation.css">
         <style>
             body {
                 padding: 20px 0 0 0;

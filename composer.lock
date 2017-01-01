@@ -4,21 +4,71 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "77bd3f3dc58ac206cec419ef120635ef",
-    "content-hash": "79d61746df65e59a7926883394ff00b9",
+    "hash": "d900a55d34eb1eb717075983c49ffef7",
+    "content-hash": "9eb5f3f0b05b2fe1d9e6bb44976b50a4",
     "packages": [
         {
-            "name": "bower-asset/jquery",
-            "version": "3.1.1",
+            "name": "bower-asset/foundation-sites",
+            "version": "v6.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "1b30f3ad466ebf2714d47eda34dbd7fdf6849fe3"
+                "url": "https://github.com/zurb/foundation-sites.git",
+                "reference": "60566d1539325783ac3002ab5282a2b446a2c1a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/1b30f3ad466ebf2714d47eda34dbd7fdf6849fe3",
-                "reference": "1b30f3ad466ebf2714d47eda34dbd7fdf6849fe3",
+                "url": "https://api.github.com/repos/zurb/foundation-sites/zipball/60566d1539325783ac3002ab5282a2b446a2c1a1",
+                "reference": "60566d1539325783ac3002ab5282a2b446a2c1a1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/jquery": "~2.2.0",
+                "bower-asset/what-input": "~4.0.3"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "scss/foundation.scss",
+                    "dist/js/foundation.js"
+                ],
+                "bower-asset-ignore": [
+                    "config",
+                    "docs",
+                    "gulp",
+                    "lib",
+                    "test",
+                    "composer.json",
+                    "CONTRIBUTING.md",
+                    "gulpfile.js",
+                    "meteor-README.md",
+                    "package.js",
+                    "package.json",
+                    "sache.json",
+                    ".editorconfig",
+                    ".npm",
+                    ".gitignore",
+                    ".npmignore",
+                    ".versions",
+                    ".babelrc",
+                    "yarn.lock"
+                ]
+            },
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/jquery",
+            "version": "2.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jquery/jquery-dist.git",
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/c0185ab7c75aab88762c5aae780b9d83b80eda72",
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -36,6 +86,42 @@
                 "javascript",
                 "jquery",
                 "library"
+            ]
+        },
+        {
+            "name": "bower-asset/what-input",
+            "version": "v4.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ten1seven/what-input.git",
+                "reference": "b5ced447b776180c8aa29d0b70d3d37cac03c586"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ten1seven/what-input/zipball/b5ced447b776180c8aa29d0b70d3d37cac03c586",
+                "reference": "b5ced447b776180c8aa29d0b70d3d37cac03c586",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "dist/what-input.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "bower_components",
+                    "test",
+                    "tests"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A global utility for tracking the current input method (mouse, keyboard or touch).",
+            "keywords": [
+                "a11y",
+                "accessibility",
+                "input",
+                "javascript"
             ]
         },
         {
