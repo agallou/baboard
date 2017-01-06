@@ -69,6 +69,8 @@ foreach ($containers as $container) {
     }
 }
 
+$sortFlags = SORT_FLAG_CASE + SORT_STRING;
+
 $preparedInfos = [];
 foreach ($runningContainers as $infos) {
     $preparedInfos[$infos['project']][$infos['service']] = [
@@ -76,9 +78,10 @@ foreach ($runningContainers as $infos) {
         'category' => $infos['category'],
         'default_path' => $infos['default_path'],
     ];
+    ksort($preparedInfos[$infos['project']], $sortFlags);
 }
-ksort($preparedInfos);
-ksort($categories);
+ksort($preparedInfos, $sortFlags);
+ksort($categories, $sortFlags);
 ?>
 <html>
     <head>
