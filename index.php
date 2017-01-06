@@ -33,6 +33,13 @@ foreach ($containers as $container) {
             continue;
         }
 
+        if (isset($labels['baboard.container.default_path'])) {
+            $defaultPath = $labels['baboard.container.default_path'];
+        } else {
+            $defaultPath = null;
+        }
+
+
         if (isset($labels['baboard.project.name'])) {
             $project = $labels['baboard.project.name'];
         } elseif (isset($labels['com.docker.compose.project'])) {
@@ -53,20 +60,21 @@ foreach ($containers as $container) {
         }
 
         $runningContainers[] = [
-            'service'  => $name,
-            'project'  => $project,
-            'port'     => $port->getPublicPort(),
-            'category' => $category,
+            'service'      => $name,
+            'project'      => $project,
+            'port'         => $port->getPublicPort(),
+            'category'     => $category,
+            'default_path' => $defaultPath,
         ];
     }
 }
-
 
 $preparedInfos = [];
 foreach ($runningContainers as $infos) {
     $preparedInfos[$infos['project']][$infos['service']] = [
         'port' => $infos['port'],
         'category' => $infos['category'],
+        'default_path' => $infos['default_path'],
     ];
 }
 ksort($preparedInfos);
@@ -126,7 +134,7 @@ ksort($categories);
                                 <?php if (isset($serviceInfos['category'])): ?> data-category-id="<?php echo $serviceInfos['category'] ?>"<?php endif ?>
                             >
                                 <td>
-                                    <a href="http://localhost:<?php echo $serviceInfos['port'] ?>" target="_blank"><?php echo $service ?></a>
+                                    <a href="http://localhost:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>" target="_blank"><?php echo $service ?></a>
                                 </td>
                                 <td style="text-align: right">
                                     <?php echo $serviceInfos['port'] ?>

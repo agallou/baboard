@@ -39,6 +39,11 @@ docker run
 
 `string` : category name. By defaut, the container does not have a category. Examples `atoum`, `afup`, `myCompagny`.
 
+### baboard.container.default_path
+
+`string` : path that will be added to the container url. Defaults to none. Examples : `/app_dev.php`, `/_plugin/head`.
+ 
+
 ## License
 
 TODO
