@@ -1,6 +1,6 @@
 <?php
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Docker\Docker;
 
@@ -87,7 +87,7 @@ ksort($categories, $sortFlags);
     <head>
         <meta charset="utf-8">
         <title>Baboard</title>
-        <link rel="stylesheet" href="vendor/bower-asset/foundation-sites/dist/css/foundation.css">
+        <link rel="stylesheet" href="/foundation.css">
         <style>
             body {
                 padding: 20px 0 0 0;
@@ -147,7 +147,7 @@ ksort($categories, $sortFlags);
                         </tbody>
                     <?php endforeach; ?>
                 </table>
-                <script src="vendor/bower-asset/jquery/dist/jquery.js"></script>
+                <script src="/jquery.js"></script>
                 <script>
                     $("tbody tr").click(function(e) {
                         if (e.target.nodeName == 'A') {
