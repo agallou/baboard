@@ -137,7 +137,7 @@ ksort($categories, $sortFlags);
                                 <?php if (isset($serviceInfos['category'])): ?> data-category-id="<?php echo $serviceInfos['category'] ?>"<?php endif ?>
                             >
                                 <td>
-                                    <a href="http://localhost:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>" target="_blank"><?php echo $service ?></a>
+                                    <a href="http://<?php echo parse_url($_SERVER['HTTP_HOST'],  PHP_URL_HOST) ?>:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>" target="_blank"><?php echo $service ?></a>
                                 </td>
                                 <td style="text-align: right">
                                     <?php echo $serviceInfos['port'] ?>
