@@ -33,6 +33,28 @@ foreach ($containers as $container) {
             continue;
         }
 
+        if (false !== strpos($name, ',')) {
+            $explodedNames = explode(',', $name);
+        } else {
+            $explodedNames = [$name];
+        }
+
+        $hostsInfos = [];
+
+        foreach ($explodedNames as $internalName) {
+            if (false === strpos($internalName, ':')) {
+                $hostsInfosName = $internalName;
+                $hostsInfosHost = parse_url($_SERVER['HTTP_HOST'],  PHP_URL_HOST);
+            } else {
+                list($hostsInfosHost, $hostsInfosName) = explode(':', $internalName, 2);
+            }
+
+            $hostsInfos[] = [
+                'host' => $hostsInfosHost,
+                'name' => $hostsInfosName,
+            ];
+        }
+
         if (isset($labels['baboard.container.default_path'])) {
             $defaultPath = $labels['baboard.container.default_path'];
         } else {
@@ -65,19 +87,21 @@ foreach ($containers as $container) {
             'port'         => $port->getPublicPort(),
             'category'     => $category,
             'default_path' => $defaultPath,
+            'hosts_infos'  => $hostsInfos,
         ];
     }
 }
-
 $sortFlags = SORT_FLAG_CASE + SORT_STRING;
 
 $preparedInfos = [];
 foreach ($runningContainers as $infos) {
-    $preparedInfos[$infos['project']][$infos['service']] = [
+    $preparedInfos[$infos['project']][] = [
         'port' => $infos['port'],
         'category' => $infos['category'],
         'default_path' => $infos['default_path'],
+        'hosts_infos' => $infos['hosts_infos'],
     ];
+
     ksort($preparedInfos[$infos['project']], $sortFlags);
 }
 ksort($preparedInfos, $sortFlags);
@@ -133,16 +157,18 @@ ksort($categories, $sortFlags);
                         </thead>
                         <tbody data-project-id="<?php echo $project ?>">
                         <?php foreach ($projectInfos as $service => $serviceInfos): ?>
-                            <tr style="cursor: pointer"
-                                <?php if (isset($serviceInfos['category'])): ?> data-category-id="<?php echo $serviceInfos['category'] ?>"<?php endif ?>
-                            >
-                                <td>
-                                    <a href="http://<?php echo parse_url($_SERVER['HTTP_HOST'],  PHP_URL_HOST) ?>:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>" target="_blank"><?php echo $service ?></a>
-                                </td>
-                                <td style="text-align: right">
-                                    <?php echo $serviceInfos['port'] ?>
-                                </td>
-                            </tr>
+                            <?php foreach ($serviceInfos['hosts_infos'] as $hostInfos): ?>
+                                <tr style="cursor: pointer"
+                                    <?php if (isset($serviceInfos['category'])): ?> data-category-id="<?php echo $serviceInfos['category'] ?>"<?php endif ?>
+                                >
+                                    <td>
+                                        <a href="http://<?php echo $hostInfos['host'] ?>:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>" target="_blank"><?php echo $hostInfos['name'] ?></a>
+                                    </td>
+                                    <td style="text-align: right">
+                                        <?php echo $serviceInfos['port'] ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         <?php endforeach; ?>
                         </tbody>
                     <?php endforeach; ?>

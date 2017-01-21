@@ -31,6 +31,10 @@ docker run
 
 `string` : service name. Defaults to ``. Examples : `Mailcatcher`, `Front`, `Back`, `FR`, `EN`, `Redis Commander`.
  
+If you have an hostname based application running in your container (that's not a good practice), you can indicate the host used to access the container by prefixing the name by the hostname followed by a colon. For example : `myhostname:Website`.
+
+If you have multiple hostname based applications running in your container (that's not a good practice), you can indicate them by separating them with a coma. For example : `myhostname:Website 1,mysecondhostname:Website 2`.
+
 ### baboard.project.name
 
 `string` : project name. Defaults to ``. Examples : `atoum website`, `atoum documentation`, `afup.org`, `aperophp.net`, `myProject`. 
