@@ -45,6 +45,9 @@ foreach ($containers as $container) {
             if (false === strpos($internalName, ':')) {
                 $hostsInfosName = $internalName;
                 $hostsInfosHost = parse_url($_SERVER['HTTP_HOST'],  PHP_URL_HOST);
+                if (null === $hostsInfosHost) {
+                    $hostsInfosHost = $_SERVER['HTTP_HOST'];
+                }
             } else {
                 list($hostsInfosHost, $hostsInfosName) = explode(':', $internalName, 2);
             }
