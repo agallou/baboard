@@ -10,7 +10,7 @@ Each service that have a port binding with a name. They will be grouped by proje
 
 Here is an example of what it looks like ;
 
-PHOTO.
+![Screenshot](doc/screenshot.png)
 
 ## Install it
 
