@@ -71,5 +71,5 @@ Then `sudo service docker-baboard start` to tun it the first time.
 
 ## License
 
-TODO
+baboard is released under the MIT License. See the bundled LICENSE file for details.
 
