@@ -48,6 +48,27 @@ If you have multiple hostname based applications running in your container (that
 `string` : path that will be added to the container url. Defaults to none. Examples : `/app_dev.php`, `/_plugin/head`.
  
 
+## Launch it at startup
+
+See also [https://docs.docker.com/engine/admin/host_integration/](https://docs.docker.com/engine/admin/host_integration/)
+
+### With upstart
+
+Create a file in the upstart directory, for example : `/etc/init/docker-baboard.conf`.
+
+```
+description "Baboard container"
+author "Me"
+start on filesystem and started docker
+stop on runlevel [!2345]
+respawn
+script
+  /usr/bin/docker run -v /var/run/docker.sock:/var/run/docker.sock -p 80:80 test-babord
+end script
+```
+
+Then `sudo service docker-baboard start` to tun it the first time.
+
 ## License
 
 TODO
