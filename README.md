@@ -63,7 +63,7 @@ start on filesystem and started docker
 stop on runlevel [!2345]
 respawn
 script
-  /usr/bin/docker run -v /var/run/docker.sock:/var/run/docker.sock -p 80:80 test-babord
+  /usr/bin/docker run -v /var/run/docker.sock:/var/run/docker.sock -p 80:80 agallou/baboard
 end script
 ```
 
