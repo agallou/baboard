@@ -63,11 +63,40 @@ start on filesystem and started docker
 stop on runlevel [!2345]
 respawn
 script
-  /usr/bin/docker run -v /var/run/docker.sock:/var/run/docker.sock -p 80:80 agallou/baboard
+  /usr/bin/docker rm docker-baboard-service | true
+  /usr/bin/docker run -v /var/run/docker.sock:/var/run/docker.sock -p 80:80 --name docker-baboard-service agallou/baboard
+end script
+
+post-stop script
+  /usr/bin/docker stop docker-baboard-service
+  /usr/bin/docker rm docker-baboard-service
 end script
 ```
 
 Then `sudo service docker-baboard start` to tun it the first time.
+
+### With systemd
+
+Create a file in the systemd directory, for example : `/etc/systemd/system/docker.baboard.service`.
+
+```
+[Unit]
+Description=Docker Container Baboard
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=
+ExecStart=/bin/sh -c "/usr/bin/docker rm docker-baboard-service | true && /usr/bin/docker run -v /var/run/docker.sock:/var/run/docker.sock -p 80:80 --name docker-baboard-service agallou/baboard"
+ExecStop=/usr/bin/docker stop docker-baboard-service
+ExecStopPost=/usr/bin/docker rm docker-baboard-service
+
+[Install]
+WantedBy=default.target
+```
+
+Then `sudo service docker.baboard start` to run it (follow the logs with `journalctl -u docker.baboard.service -f`).
 
 ## License
 
