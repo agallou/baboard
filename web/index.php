@@ -64,6 +64,12 @@ foreach ($containers as $container) {
             $defaultPath = null;
         }
 
+        if (isset($labels['baboard.container.protocol'])) {
+            $protocol = $labels['baboard.container.protocol'];
+        } else {
+            $protocol = 'http';
+        }
+
 
         if (isset($labels['baboard.project.name'])) {
             $project = $labels['baboard.project.name'];
@@ -88,10 +94,12 @@ foreach ($containers as $container) {
             'service'      => $name,
             'project'      => $project,
             'port'         => $port->getPublicPort(),
+            'protocol'     => $protocol,
             'category'     => $category,
             'default_path' => $defaultPath,
             'hosts_infos'  => $hostsInfos,
         ];
+
     }
 }
 $sortFlags = SORT_FLAG_CASE + SORT_STRING;
@@ -100,6 +108,7 @@ $preparedInfos = [];
 foreach ($runningContainers as $infos) {
     $preparedInfos[$infos['project']][] = [
         'port' => $infos['port'],
+        'protocol' => $infos['protocol'],
         'category' => $infos['category'],
         'default_path' => $infos['default_path'],
         'hosts_infos' => $infos['hosts_infos'],
@@ -165,7 +174,7 @@ ksort($categories, $sortFlags);
                                     <?php if (isset($serviceInfos['category'])): ?> data-category-id="<?php echo $serviceInfos['category'] ?>"<?php endif ?>
                                 >
                                     <td>
-                                        <a href="http://<?php echo $hostInfos['host'] ?>:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>" target="_blank"><?php echo $hostInfos['name'] ?></a>
+                                        <a href="<?php echo $serviceInfos['protocol'] ?>://<?php echo $hostInfos['host'] ?>:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>" target="_blank"><?php echo $hostInfos['name'] ?></a>
                                     </td>
                                     <td style="text-align: right">
                                         <?php echo $serviceInfos['port'] ?>

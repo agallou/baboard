@@ -47,6 +47,10 @@ If you have multiple hostname based applications running in your container (that
 
 `string` : path that will be added to the container url. Defaults to none. Examples : `/app_dev.php`, `/_plugin/head`.
  
+### baboard.container.protocol
+
+`string` : protocol that will be used to generate the url. Defaults to `http`. Example : `https`.
+
 
 ## Launch it at startup
 
