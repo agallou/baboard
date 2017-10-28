@@ -81,7 +81,7 @@ Then `sudo service docker-baboard start` to tun it the first time.
 
 ### With systemd
 
-Create a file in the systemd directory, for example : `/etc/systemd/system/docker.baboard.service`.
+Create a file in the systemd directory, for example : `/etc/systemd/system/multi-user.target.wants/docker-baboard.service`.
 
 ```
 [Unit]
