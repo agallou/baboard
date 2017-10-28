@@ -191,7 +191,7 @@ ksort($categories, $sortFlags);
                         if (e.target.nodeName == 'A') {
                             return;
                         }
-                        window.open($(this).find("a").attr("href"), '_blank');
+                        window.location = $(this).find("a").attr("href");
                     });
 
                     $('.category-link').click(function() {
