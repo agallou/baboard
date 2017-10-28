@@ -174,7 +174,7 @@ ksort($categories, $sortFlags);
                                     <?php if (isset($serviceInfos['category'])): ?> data-category-id="<?php echo $serviceInfos['category'] ?>"<?php endif ?>
                                 >
                                     <td>
-                                        <a href="<?php echo $serviceInfos['protocol'] ?>://<?php echo $hostInfos['host'] ?>:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>" target="_blank"><?php echo $hostInfos['name'] ?></a>
+                                        <a href="<?php echo $serviceInfos['protocol'] ?>://<?php echo $hostInfos['host'] ?>:<?php echo $serviceInfos['port'] ?><?php if (null !== $serviceInfos['default_path']): ?><?php echo $serviceInfos['default_path'] ?><?php endif ?>"><?php echo $hostInfos['name'] ?></a>
                                     </td>
                                     <td style="text-align: right">
                                         <?php echo $serviceInfos['port'] ?>
